@@ -21,13 +21,6 @@
       "target": "_blank"
     },
     {
-      "url": "/Carrier_Collaboration/CarrierRegistration",
-      "name": "Carrier Registration",
-      "icon": "menu-icon tf-icons ti ti-user",
-      "slug": "CarrierRegistration",
-      "target": "_blank"
-    },
-    {
       "url": "/carrier",
       "name": "Carrier test",
       "icon": "menu-icon tf-icons ti ti-user",

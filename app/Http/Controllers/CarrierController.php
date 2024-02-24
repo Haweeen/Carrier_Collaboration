@@ -69,7 +69,6 @@ class CarrierController extends Controller
 
   public function register(Request $request)
   {
-    // Validate the form data
     $validatedData = $request->validate([
       'name' => 'required',
       'address' => 'required',
@@ -80,7 +79,6 @@ class CarrierController extends Controller
       'status' => 'required',
     ]);
 
-    // Create a new Carrier instance
     $carrier = new Carrier;
     $carrier->name = $request->name;
     $carrier->address = $request->address;
@@ -91,7 +89,12 @@ class CarrierController extends Controller
     $carrier->status = $request->status;
     $carrier->save();
 
-    // Redirect to a success page
     return redirect()->route('carrier.index')->with('success', 'Registration successful!');
+  }
+
+  public function show($id)
+  {
+    $carrier = Carrier::findOrFail($id);
+    return view('carrier.show', compact('carrier'));
   }
 }

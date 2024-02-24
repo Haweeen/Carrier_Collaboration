@@ -44,7 +44,6 @@
   <div class="text-center">
     <a href="{{ route('carrier.edit', $carrier->id) }}" class="btn btn-primary">Edit</a>
     <a href="{{ route('carrier.index') }}" class="btn btn-secondary">Back</a>
-    <p>hehe</p>
   </div>
 </div>
 @endsection

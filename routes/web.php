@@ -42,7 +42,7 @@ Route::middleware([
   })->name('dashboard');
 });
 
-
+//Carrier Registration
 Route::get('/carrier', [CarrierController::class, 'index'])->name('carrier.index');
 Route::get('/carrier/create', [CarrierController::class, 'create'])->name('carrier.create');
 Route::post('/carrier', [CarrierController::class, 'store'])->name('carrier.store');
@@ -51,3 +51,5 @@ Route::put('/carrier/{id}', [CarrierController::class, 'update'])->name('carrier
 Route::delete('/carrier/{id}', [CarrierController::class, 'destroy'])->name('carrier.destroy');
 Route::post('/carrier/register', [CarrierController::class, 'register'])->name('carrier.register');
 Route::put('/carrier/{id}', [CarrierController::class, 'update'])->name('carrier.update');
+Route::get('/carriers/{carrier}', [CarrierController::class, 'show'])->name('carrier.show');
+// End Carrier Registration

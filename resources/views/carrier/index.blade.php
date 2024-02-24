@@ -11,51 +11,6 @@ $configData = Helper::appClasses();
 <div class="d-flex justify-content-center align-items-center" style="height: 100vh;">
   <div class="card p-4">
     <h2 class="text-center mb-4">Carrier Registration</h2>
-    @if (session('success'))
-    <div class="alert alert-success">{{ session('success') }}</div>
-    @endif
-
-    @if ($carriers->isEmpty())
-    <div class="alert alert-info">No carriers found.</div>
-    @else
-    <table class="table">
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Address</th>
-          <th>Contact Number</th>
-          <th>Email</th>
-          <th>Website</th>
-          <th>Type</th>
-          <th>Status</th>
-          <th>Action</th>
-        </tr>
-      </thead>
-      <tbody>
-        @foreach ($carriers as $carrier)
-        <tr>
-          <td>{{ $carrier->name }}</td>
-          <td>{{ $carrier->address }}</td>
-          <td>{{ $carrier->contact_number }}</td>
-          <td>{{ $carrier->email }}</td>
-          <td>{{ $carrier->website }}</td>
-          <td>{{ $carrier->type }}</td>
-          <td>{{ $carrier->status }}</td>
-          <td>
-            <a href="{{ route('carrier.edit', $carrier->id) }}" class="btn btn-sm btn-primary">Edit</a>
-            <form action="{{ route('carrier.destroy', $carrier->id) }}" method="POST" style="display: inline-block;">
-              @csrf
-              @method('DELETE')
-              <button type="submit" class="btn btn-sm btn-danger"
-                onclick="return confirm('Are you sure you want to delete this carrier?')">Delete</button>
-            </form>
-          </td>
-        </tr>
-        @endforeach
-      </tbody>
-    </table>
-    @endif
-
     <form method="POST" action="{{ route('carrier.register') }}">
       @csrf
       <div class="form-group">
@@ -95,9 +50,23 @@ $configData = Helper::appClasses();
 
       <div class="text-center">
         <button type="submit" class="btn btn-primary">Register</button>
-        <a href="{{ url()->previous() }}" class="btn btn-secondary">Back</a>
+        <a href="{{ " /" }}" class="btn btn-secondary">Back</a>
       </div>
     </form>
+
+    @if ($carriers->isNotEmpty())
+    <div class="mt-4">
+      <h4>Registered Carriers:</h4>
+      <ul>
+        @foreach ($carriers as $carrier)
+        <li>
+          <a href="{{ route('carrier.show', $carrier->id) }}">{{ $carrier->name }}</a> <!-- Show button -->
+        </li>
+        @endforeach
+      </ul>
+    </div>
+    @endif
+
   </div>
 </div>
 
