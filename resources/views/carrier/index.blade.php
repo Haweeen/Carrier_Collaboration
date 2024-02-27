@@ -39,7 +39,7 @@ $configData = Helper::appClasses();
       </div>
 
       <div class="form-group">
-        <label for="type">Carrier aType:</label>
+        <label for="type">Carrier Type:</label>
         <input type="text" name="type" id="type" class="form-control" required>
       </div>
 
