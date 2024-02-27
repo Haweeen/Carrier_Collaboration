@@ -44,7 +44,7 @@
     </div>
 
     <div class="form-group">
-      <label for="type">Type:</label>
+      <label for="type">Carrier Type:</label>
       <input type="text" name="type" id="type" class="form-control" value="{{ $carrier->type }}" required>
     </div>
 

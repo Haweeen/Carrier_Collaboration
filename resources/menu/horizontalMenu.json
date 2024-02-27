@@ -22,7 +22,7 @@
     },
     {
       "url": "/carrier",
-      "name": "Carrier test",
+      "name": "Carrier Registration",
       "icon": "menu-icon tf-icons ti ti-user",
       "slug": "CarrierRegistration"
     }
