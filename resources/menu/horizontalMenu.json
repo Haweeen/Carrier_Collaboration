@@ -21,10 +21,10 @@
       "target": "_blank"
     },
     {
-      "url": "/carrier",
+      "url": "/carriers/",
       "name": "Carrier Registration",
       "icon": "menu-icon tf-icons ti ti-user",
-      "slug": "CarrierRegistration"
+      "slug": "index"
     }
   ]
 }

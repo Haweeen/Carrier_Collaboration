@@ -2,99 +2,79 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Carrier;
+use Illuminate\View\View;
+use Illuminate\Http\RedirectResponse;
+use App\Http\Requests\StoreCarrierRequest;
+use App\Http\Requests\UpdateCarrierRequest;
 
 class CarrierController extends Controller
 {
-  public function index()
+  /**
+   * Display a listing of the resource.
+   */
+  public function index(): View
   {
-    $carriers = Carrier::all();
-    return view('carrier.index', compact('carriers'));
-  }
-
-  public function create()
-  {
-    return view('carrier.create');
-  }
-
-  public function store(Request $request)
-  {
-    $validatedData = $request->validate([
-      'name' => 'required',
-      'address' => 'required',
-      'contact_number' => 'required',
-      'email' => 'required|email',
-      'website' => 'required|url',
-      'type' => 'required',
-      'status' => 'required',
+    return view('carriers.index', [
+      'carriers' => Carrier::latest()->paginate(3)
     ]);
-
-    Carrier::create($validatedData);
-
-    return redirect()->route('carrier.index')->with('success', 'Carrier created successfully!');
   }
 
-  public function edit($id)
+  /**
+   * Show the form for creating a new resource.
+   */
+  public function create(): View
   {
-    $carrier = Carrier::findOrFail($id);
-    return view('carrier.edit', compact('carrier'));
+    return view('carriers.create');
   }
 
-  public function update(Request $request, $id)
+  /**
+   * Store a newly created resource in storage.
+   */
+  public function store(StoreCarrierRequest $request): RedirectResponse
   {
-    $validatedData = $request->validate([
-      'name' => 'required',
-      'address' => 'required',
-      'contact_number' => 'required',
-      'email' => 'required|email',
-      'website' => 'required|url',
-      'type' => 'required',
-      'status' => 'required',
+    Carrier::create($request->all());
+    return redirect()->route('carriers.index')
+      ->withSuccess('New carrier is added successfully.');
+  }
+
+  /**
+   * Display the specified resource.
+   */
+  public function show(Carrier $carrier): View
+  {
+    return view('carriers.show', [
+      'carrier' => $carrier
     ]);
-
-    $carrier = Carrier::findOrFail($id);
-    $carrier->update($validatedData);
-
-    return redirect()->route('carrier.index')->with('success', 'Carrier updated successfully!');
   }
 
-  public function destroy($id)
+  /**
+   * Show the form for editing the specified resource.
+   */
+  public function edit(Carrier $carrier): View
   {
-    $carrier = Carrier::findOrFail($id);
+    return view('carriers.edit', [
+      'carrier' => $carrier
+    ]);
+  }
+
+  /**
+   * Update the specified resource in storage.
+   */
+  public function update(UpdateCarrierRequest $request, Carrier $carrier): RedirectResponse
+  {
+    $carrier->update($request->all());
+    return redirect()->back()
+      ->withSuccess('Carrier is updated successfully.');
+  }
+
+  /**
+   * Remove the specified resource from storage.
+   */
+  public function destroy(Carrier $carrier): RedirectResponse
+  {
     $carrier->delete();
-
-    return redirect()->route('carrier.index')->with('success', 'Carrier deleted successfully!');
-  }
-
-  public function register(Request $request)
-  {
-    $validatedData = $request->validate([
-      'name' => 'required',
-      'address' => 'required',
-      'contact_number' => 'required',
-      'email' => 'required|email',
-      'website' => 'required|url',
-      'type' => 'required',
-      'status' => 'required',
-    ]);
-
-    $carrier = new Carrier;
-    $carrier->name = $request->name;
-    $carrier->address = $request->address;
-    $carrier->contact_number = $request->contact_number;
-    $carrier->email = $request->email;
-    $carrier->website = $request->website;
-    $carrier->type = $request->type;
-    $carrier->status = $request->status;
-    $carrier->save();
-
-    return redirect()->route('carrier.index')->with('success', 'Registration successful!');
-  }
-
-  public function show($id)
-  {
-    $carrier = Carrier::findOrFail($id);
-    return view('carrier.show', compact('carrier'));
+    return redirect()->route('carriers.index')
+      ->withSuccess('Carrier is deleted successfully.');
   }
 }

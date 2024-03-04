@@ -6,22 +6,24 @@ use Illuminate\Support\Facades\Schema;
 
 class CreateCarriersTable extends Migration
 {
-  public function up()
+
+  public function up(): void
   {
     Schema::create('carriers', function (Blueprint $table) {
       $table->id();
       $table->string('name');
       $table->string('address');
-      $table->string('contact_number');
+      $table->string('contact_name');
       $table->string('email');
-      $table->string('website');
-      $table->string('type');
-      $table->string('status');
+      $table->string('phone');
+      $table->text('description')->nullable();
+      $table->string('image')->nullable();
       $table->timestamps();
     });
   }
 
-  public function down()
+
+  public function down(): void
   {
     Schema::dropIfExists('carriers');
   }
