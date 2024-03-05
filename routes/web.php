@@ -6,6 +6,7 @@ use App\Http\Controllers\pages\HomePage;
 use App\Http\Controllers\authentications\LoginBasic;
 use App\Http\Controllers\authentications\RegisterBasic;
 use App\Http\Controllers\CarrierController;
+use App\Http\Controllers\lms_g50_carriersController;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,4 +41,4 @@ Route::middleware([
 });
 
 //Carrier Crud-Registration
-Route::resource('carriers', CarrierController::class);
+Route::resource('carriers', lms_g50_carriersController::class);

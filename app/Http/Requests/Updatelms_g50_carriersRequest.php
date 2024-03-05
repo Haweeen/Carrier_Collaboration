@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateCarrierRequest extends FormRequest
+class Updatelms_g50_carriersRequest extends FormRequest
 {
   /**
    * Determine if the user is authorized to make this request.

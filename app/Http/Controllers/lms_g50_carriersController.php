@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Carrier;
 use Illuminate\View\View;
 use Illuminate\Http\RedirectResponse;
-use App\Http\Requests\StoreCarrierRequest;
-use App\Http\Requests\UpdateCarrierRequest;
+use App\Http\Requests\Storelms_g50_carriersRequest;
+use App\Http\Requests\Updatelms_g50_carriersRequest;
+use App\Models\lms_g50_carriers;
 
-class CarrierController extends Controller
+class lms_g50_carriersController extends Controller
 {
   /**
    * Display a listing of the resource.
@@ -16,7 +16,7 @@ class CarrierController extends Controller
   public function index(): View
   {
     return view('carriers.index', [
-      'carriers' => Carrier::latest()->paginate(3)
+      'carriers' => lms_g50_carriers::latest()->paginate(3)
     ]);
   }
 
@@ -31,9 +31,9 @@ class CarrierController extends Controller
   /**
    * Store a newly created resource in storage.
    */
-  public function store(StoreCarrierRequest $request): RedirectResponse
+  public function store(Storelms_g50_carriersRequest $request): RedirectResponse
   {
-    Carrier::create($request->all());
+    lms_g50_carriers::create($request->all());
     return redirect()->route('carriers.index')
       ->withSuccess('New carrier is added successfully.');
   }
@@ -41,7 +41,7 @@ class CarrierController extends Controller
   /**
    * Display the specified resource.
    */
-  public function show(Carrier $carrier): View
+  public function show(lms_g50_carriers $carrier): View
   {
     return view('carriers.show', [
       'carrier' => $carrier
@@ -51,7 +51,7 @@ class CarrierController extends Controller
   /**
    * Show the form for editing the specified resource.
    */
-  public function edit(Carrier $carrier): View
+  public function edit(lms_g50_carriers $carrier): View
   {
     return view('carriers.edit', [
       'carrier' => $carrier
@@ -61,7 +61,7 @@ class CarrierController extends Controller
   /**
    * Update the specified resource in storage.
    */
-  public function update(UpdateCarrierRequest $request, Carrier $carrier): RedirectResponse
+  public function update(Updatelms_g50_carriersRequest $request, lms_g50_carriers $carrier): RedirectResponse
   {
     $carrier->update($request->all());
     return redirect()->back()
@@ -71,7 +71,7 @@ class CarrierController extends Controller
   /**
    * Remove the specified resource from storage.
    */
-  public function destroy(Carrier $carrier): RedirectResponse
+  public function destroy(lms_g50_carriers $carrier): RedirectResponse
   {
     $carrier->delete();
     return redirect()->route('carriers.index')
