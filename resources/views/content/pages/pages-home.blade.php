@@ -16,7 +16,7 @@
   <hr />
   <div class="row features text-center mb-5">
     <div class="col-lg-4 col-md-6 mb-5">
-      <a class="card card-link border-top border-top-lg border-primary h-100 lift" href="carrier">
+      <a class="card card-link border-top border-top-lg border-primary h-100 lift" href="carriers">
         <div class="card-body p-5">
           <div class="icon-stack icon-stack-lg bg-primary text-primary mb-4"><i data-feather="clock"></i></div>
           <h6>CARRIER REGISTRATION</h6>

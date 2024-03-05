@@ -16,7 +16,8 @@
       <p class="card-text"><strong>Carrier Description: </strong>{{ $carrier->description }}</p>
       @if ($carrier->image)
       <div class="mb-2">
-        <img src="{{ asset('storage/' . $carrier->image) }}" alt="Carrier Image" width="100">
+        <img src="{{ asset('app/public/' . $carrier->image) }}" alt="Carrier Image"
+          style="max-width: 100%; height: auto;">
       </div>
       @endif
     </div>

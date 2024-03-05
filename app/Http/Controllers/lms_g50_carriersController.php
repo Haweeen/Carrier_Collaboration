@@ -33,7 +33,16 @@ class lms_g50_carriersController extends Controller
    */
   public function store(Storelms_g50_carriersRequest $request): RedirectResponse
   {
-    lms_g50_carriers::create($request->all());
+    $data = $request->all();
+
+    // Step 3: Save Images in Storage
+    if ($request->hasFile('image')) {
+      $imagePath = $request->file('image')->store('images', 'public');
+      $data['image'] = $imagePath;
+    }
+
+    lms_g50_carriers::create($data);
+
     return redirect()->route('carriers.index')
       ->withSuccess('New carrier is added successfully.');
   }
@@ -63,7 +72,16 @@ class lms_g50_carriersController extends Controller
    */
   public function update(Updatelms_g50_carriersRequest $request, lms_g50_carriers $carrier): RedirectResponse
   {
-    $carrier->update($request->all());
+    $data = $request->all();
+
+    // Step 3: Save Images in Storage
+    if ($request->hasFile('image')) {
+      $imagePath = $request->file('image')->store('images', 'public');
+      $data['image'] = $imagePath;
+    }
+
+    $carrier->update($data);
+
     return redirect()->back()
       ->withSuccess('Carrier is updated successfully.');
   }
@@ -74,6 +92,7 @@ class lms_g50_carriersController extends Controller
   public function destroy(lms_g50_carriers $carrier): RedirectResponse
   {
     $carrier->delete();
+
     return redirect()->route('carriers.index')
       ->withSuccess('Carrier is deleted successfully.');
   }
