@@ -7,18 +7,10 @@
       "slug": "pages-home"
     },
     {
-      "url": "auth/login-basic",
-      "name": "Login",
-      "icon": "menu-icon tf-icons ti ti-login",
-      "slug": "auth-login-basic",
-      "target": "_blank"
-    },
-    {
-      "url": "auth/register-basic",
-      "name": "Register",
+      "url": "/register",
+      "name": "User Registration",
       "icon": "menu-icon tf-icons ti ti-user",
-      "slug": "auth-register-basic",
-      "target": "_blank"
+      "slug": "register"
     },
     {
       "url": "/carriers/",
