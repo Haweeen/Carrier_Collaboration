@@ -10,6 +10,7 @@ class lms_g50_carriers extends Model
   use HasFactory;
 
   protected $fillable = [
+    'user_id',
     'name',
     'address',
     'contact_name',
@@ -18,4 +19,9 @@ class lms_g50_carriers extends Model
     'description',
     'image',
   ];
+
+  public function user()
+  {
+    return $this->belongsTo(User::class);
+  }
 }

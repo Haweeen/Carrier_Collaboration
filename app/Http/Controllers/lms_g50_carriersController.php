@@ -34,6 +34,7 @@ class lms_g50_carriersController extends Controller
   public function store(Storelms_g50_carriersRequest $request): RedirectResponse
   {
     $data = $request->all();
+    $data['user_id'] = auth()->id();
 
     // Step 3: Save Images in Storage
     if ($request->hasFile('image')) {
@@ -62,6 +63,10 @@ class lms_g50_carriersController extends Controller
    */
   public function edit(lms_g50_carriers $carrier): View
   {
+    if (auth()->id() !== $carrier->user_id) {
+      abort(403);
+    }
+
     return view('carriers.edit', [
       'carrier' => $carrier
     ]);
@@ -72,6 +77,10 @@ class lms_g50_carriersController extends Controller
    */
   public function update(Updatelms_g50_carriersRequest $request, lms_g50_carriers $carrier): RedirectResponse
   {
+    if (auth()->id() !== $carrier->user_id) {
+      abort(403);
+    }
+
     $data = $request->all();
 
     // Step 3: Save Images in Storage
@@ -91,6 +100,10 @@ class lms_g50_carriersController extends Controller
    */
   public function destroy(lms_g50_carriers $carrier): RedirectResponse
   {
+    if (auth()->id() !== $carrier->user_id) {
+      abort(403);
+    }
+
     $carrier->delete();
 
     return redirect()->route('carriers.index')

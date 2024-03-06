@@ -16,7 +16,7 @@
 
   <div class="card">
     <div class="card-header">
-      <h3 class="card-title">List of Carriers</h3>
+      <h3 class="card-title mb-0">Carriers</h3>
     </div>
     <div class="card-body table-responsive">
       <table class="table table-vertical">
@@ -50,6 +50,7 @@
             </td>
             <td>
               <a href="{{ route('carriers.show', $carrier->id) }}" class="btn btn-primary">View</a>
+              @if(auth()->id() == $carrier->user_id)
               <a href="{{ route('carriers.edit', $carrier->id) }}" class="btn btn-secondary">Edit</a>
               <form action="{{ route('carriers.destroy', $carrier->id) }}" method="POST" style="display: inline-block">
                 @csrf
@@ -57,6 +58,7 @@
                 <button type="submit" class="btn btn-danger"
                   onclick="return confirm('Are you sure you want to delete this carrier?')">Delete</button>
               </form>
+              @endif
             </td>
           </tr>
           @endforeach
