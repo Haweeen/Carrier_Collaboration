@@ -20,7 +20,7 @@
         <div class="card-body p-5">
           <div class="icon-stack icon-stack-lg bg-primary text-primary mb-4"><i data-feather="clock"></i></div>
           <h6>CARRIER REGISTRATION</h6>
-          <p>Process for carriers to register their services with Bbox Express.</p>
+          <p>Process for carriers to register their services together with Bbox Express.</p>
         </div>
         <div class="card-footer bg-transparent pt-0 pb-5">
           <div class="badge badge-pill badge-light font-weight-normal px-3 py-2"></div>

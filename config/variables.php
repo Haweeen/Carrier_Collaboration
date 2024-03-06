@@ -1,8 +1,6 @@
 <?php
 // Variables
 return [
-  "creatorName" => "Pixinvent",
-  "creatorUrl" => "https://pixinvent.com",
   "templateName" => "BBOX EXPRESS", //pangalan
   "templateSuffix" => "Bootstrap Admin Template",
   "templateVersion" => "1.0.0",
